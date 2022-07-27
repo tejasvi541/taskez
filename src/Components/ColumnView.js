@@ -6,7 +6,7 @@ import TaskCard from "./TaskCard.js";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		width: "30%",
-		height: "75vh",
+		height: "70vh",
 		margin: "1.5rem",
 		padding: "0.8rem",
 		borderRadius: " 15px",

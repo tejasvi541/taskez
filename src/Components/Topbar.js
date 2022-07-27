@@ -1,18 +1,28 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Card, Button, Typography } from "@material-ui/core";
+import Searchbar from "./Searchbar";
+import UserProfile from "./UserProfile";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		display: "flex",
-		flexDirection: "column",
-		justifyItems: "center",
-		height: "100vh",
-		width: "340px",
-		alignItems: "flex-start",
-		position: "relative",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		height: "130px",
+		width: "100%",
 	},
 }));
+
 const Topbar = () => {
-	return <div>Topbar</div>;
+	const classes = useStyles();
+	return (
+		<div className={classes.root}>
+			<Searchbar />
+			<UserProfile />
+		</div>
+	);
 };
 
 export default Topbar;

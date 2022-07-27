@@ -9,16 +9,25 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		flexDirection: "row",
 	},
+	heading: {
+		fontSize: "24px",
+		fontWeight: "500",
+		fontFamily: "Poppins",
+		margin: "1.5rem",
+	},
 }));
 
 const Projects = (props) => {
 	const { toDo, inProgress, completed, addHandler } = props;
 	const classes = useStyles();
 	return (
-		<div className={classes.root}>
-			<ColumnView addHandler={addHandler} items={[]} title="To Do" />
-			<ColumnView addHandler={addHandler} items={[]} title="In Progress" />
-			<ColumnView addHandler={addHandler} items={[]} title="Completed" />
+		<div>
+			<Typography className={classes.heading}>Projects</Typography>
+			<div className={classes.root}>
+				<ColumnView addHandler={addHandler} items={[]} title="To Do" />
+				<ColumnView addHandler={addHandler} items={[]} title="In Progress" />
+				<ColumnView addHandler={addHandler} items={[]} title="Completed" />
+			</div>
 		</div>
 	);
 };
