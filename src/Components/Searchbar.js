@@ -8,6 +8,12 @@ const useStyles = makeStyles((theme) => ({
 		// border: "2px solid #F0F0F0",
 		borderRadius: "7px",
 		marginLeft: "1.5rem",
+		"& label.Mui-focused": {
+			color: "#000",
+		},
+		"& .MuiInput-underline:after": {
+			borderBottomColor: "#000",
+		},
 	},
 }));
 const Searchbar = () => {

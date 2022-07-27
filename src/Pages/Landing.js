@@ -3,6 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Card, Button } from "@material-ui/core";
 import Login from "../Components/Login";
 import Signup from "../Components/Signup";
+import { LoginUser, RegisterUser } from "../Api/api";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login, register } from "../Actions/auth";
 
 // SVG
 import landingImage from "../Assets/landingImage.svg";
@@ -84,16 +88,55 @@ const useStyles = makeStyles((theme) => ({
 
 const Landing = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [isActive, setActive] = useState(0);
+	const [error, setError] = useState({ isError: false, msg: "" });
 
-	const loginHandler = (e, data) => {
+	const loginHandler = async (e, data) => {
+		if (data.email.trim() === "") {
+			setError({ isError: true, msg: "Type a valid Email" });
+			return;
+		}
+		if (data.password.trim() === "") {
+			setError({ isError: true, msg: "Type a valid Password" });
+			return;
+		}
 		e.preventDefault();
-		console.log(data);
+		dispatch(login(data, navigate));
+		// try {
+		// 	const res = await LoginUser(data);
+		// 	console.log(res);
+		// } catch (err) {
+		// 	console.log(err);
+		// }
+		setError({ isError: false, msg: "" });
 	};
 
-	const signUpHandler = (e, data) => {
+	const signUpHandler = async (e, data) => {
+		if (data.name.trim() === "") {
+			setError({ isError: true, msg: "Type a valid Name" });
+			return;
+		}
+		if (data.email.trim() === "") {
+			setError({ isError: true, msg: "Type a valid Email" });
+			return;
+		}
+		if (data.email.trim() === "") {
+			setError({ isError: true, msg: "Type a valid Password" });
+			return;
+		}
 		e.preventDefault();
-		console.log(data);
+		dispatch(register(data, navigate));
+		// try {
+		// 	const res = await RegisterUser(data);
+		// 	if (res.data) {
+		// 		localStorage.setItem("task-token", res.data.token);
+		// 	}
+		// } catch (err) {
+		// 	console.log(err);
+		// }
+		setError({ isError: false, msg: "" });
 	};
 
 	return (
@@ -124,10 +167,18 @@ const Landing = () => {
 					<div className={classes.content}>
 						{isActive === 0 ? (
 							<>
-								<Login loginHandler={loginHandler} />
+								<Login
+									error={error}
+									setError={setError}
+									loginHandler={loginHandler}
+								/>
 							</>
 						) : (
-							<Signup signUpHandler={signUpHandler} />
+							<Signup
+								error={error}
+								setError={setError}
+								signUpHandler={signUpHandler}
+							/>
 						)}
 					</div>
 				</Card>

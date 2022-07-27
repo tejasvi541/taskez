@@ -63,7 +63,8 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: "3rem",
 	},
 }));
-const Sidebar = () => {
+const Sidebar = (props) => {
+	const { LogoutHandler } = props;
 	const classes = useStyles();
 	const [isActive, setActive] = useState(false);
 	return (
@@ -108,7 +109,10 @@ const Sidebar = () => {
 					</Typography>
 				</div>
 				<div className={classes.btnWrapper}>
-					<Typography className={classes.iconText}>
+					<Typography
+						className={classes.iconText}
+						onClick={(e) => LogoutHandler()}
+					>
 						<img src={logooutSvg} className={classes.image} /> Logout
 					</Typography>
 				</div>

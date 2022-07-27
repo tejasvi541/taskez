@@ -15,12 +15,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Topbar = () => {
+const Topbar = (props) => {
+	const { userData } = props;
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
 			<Searchbar />
-			<UserProfile />
+			<UserProfile name={userData?.name?.split(" ")[0]} />
 		</div>
 	);
 };

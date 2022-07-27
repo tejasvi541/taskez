@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Card, Button, Typography } from "@material-ui/core";
-
+import { connect } from "react-redux";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		width: "75%",
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 const Signup = (props) => {
-	const { signUpHandler } = props;
+	const { signUpHandler, error, setError } = props;
 	const classes = useStyles();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -96,6 +96,9 @@ const Signup = (props) => {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
+					{error.isError ? (
+						<p style={{ color: "#F65B2A" }}>{error.msg}</p>
+					) : null}
 					<button
 						className={classes.btn}
 						onClick={(e) =>

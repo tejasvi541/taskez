@@ -1,10 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Card, Button, Typography } from "@material-ui/core";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Sidebar";
 import Projects from "../Components/Projects";
 import TopBar from "../Components/Topbar";
+import { logout } from "../Actions/auth";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -32,18 +34,25 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	let { isLogin, userData } = useSelector((state) => state.userReducer);
 
 	const addHandler = (e, type) => {
 		console.log(type);
 	};
 
+	const LogoutHandler = () => {
+		dispatch(logout(navigate));
+	};
+
 	return (
 		<div className={classes.root}>
 			<div className={classes.section1}>
-				<Sidebar />
+				<Sidebar LogoutHandler={LogoutHandler} />
 			</div>
 			<div className={classes.section2}>
-				<TopBar />
+				<TopBar userData={userData} />
 				<Projects
 					toDo={[]}
 					inProgress={[]}

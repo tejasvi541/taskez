@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 const Login = (props) => {
-	const { loginHandler } = props;
+	const { loginHandler, error, setError } = props;
 	const classes = useStyles();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -92,6 +92,9 @@ const Login = (props) => {
 							setPassword(e.target.value);
 						}}
 					/>
+					{error.isError ? (
+						<p style={{ color: "#F65B2A" }}>{error.msg}</p>
+					) : null}
 					<button
 						className={classes.btn}
 						onClick={(e) =>
