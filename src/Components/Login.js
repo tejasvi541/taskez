@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
 	input: {
 		width: "100%",
 		margin: "0",
-
 		marginTop: "1rem",
 		marginBottom: "1rem",
 		height: "45px",
