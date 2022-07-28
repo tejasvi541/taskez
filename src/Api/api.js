@@ -1,5 +1,7 @@
 import axios from "axios";
-const url = "https://api-nodejs-todolist.herokuapp.com";
+// const url = "https://api-nodejs-todolist.herokuapp.com";
+const url =
+	"https://cors-anywhere.herokuapp.com/https://api-nodejs-todolist.herokuapp.com";
 
 export const LoginUser = (data) => axios.post(`${url}/user/login`, data);
 export const RegisterUser = (data) => axios.post(`${url}/user/register`, data);

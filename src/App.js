@@ -8,10 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loadUser } from "./Actions/auth";
 
-//Redux
-import { Provider } from "react-redux";
-import store from "./store";
-
 if (localStorage.getItem("token-taskz")) {
 	setAuthToken(localStorage.getItem("token-taskz"));
 }
@@ -33,7 +29,7 @@ function App() {
 			<Route
 				exact
 				path="/dashboard"
-				element={isLogin ? <Dashboard /> : <Landing />}
+				element={true ? <Dashboard /> : <Landing />} // We have to right isLogin where the true is placed so the dashboard is public now
 			/>
 		</Routes>
 		// </Router>
